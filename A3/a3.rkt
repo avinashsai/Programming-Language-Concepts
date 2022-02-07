@@ -16,20 +16,14 @@
     token))
 
 (define (check type)
-  ;;(display type)
-  ;;(display tokens)
   (if (empty? tokens)
       #f
       (begin
-        ;;(displayln type)
-        ;;(displayln (first (first tokens)))
         (equal? type (first (first tokens))))
       )
   )
 
 (define (atom-pending)
-  ;;(displayln (check 'NAME))
-  ;;(displayln (or (check 'NAME) (check 'STRING) (check 'INT) (check 'FLOAT)))
   (or (check 'NAME) (check 'STRING) (check 'INT) (check 'FLOAT))
   )
       
@@ -47,7 +41,6 @@
   )
 
 (define (expr)
-  ;;(displayln tokens)
   (if (or (equal? #t (atom-pending)) (equal? #t (invocation-pending)))
       (if (equal? #t (atom-pending))
           (if (or (equal? #t (check 'NAME)) (equal? #t (check 'STRING)))
@@ -76,7 +69,6 @@
   )
 
 (define (exprlist)
-  ;;(displayln tokens)
   (list 'exprList (expr) (optexprlist))
 
  )
@@ -86,7 +78,6 @@
   (set! temp null)
   (set! temp_tok null)
   (set! tokens (tokenize str))
-  ;;(displayln tokens)
   (list 'program (exprlist))
   )
      
